@@ -11,5 +11,11 @@ namespace UserRegistration
             Regex rg = new Regex(expression);   
                 return rg.IsMatch(name);
         }
+        public static bool validateEmail(string email)
+        {
+            string emailExpression = "^[a-zA-Z0-9+_.-]+@[a-zA-Z.-]+$";
+            Regex rg = new Regex(emailExpression);
+            return rg.IsMatch(email);
+        }
     }
 }
