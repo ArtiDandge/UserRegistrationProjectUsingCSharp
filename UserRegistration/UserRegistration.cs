@@ -17,5 +17,11 @@ namespace UserRegistration
             Regex rg = new Regex(emailExpression);
             return rg.IsMatch(email);
         }
+        public static bool validateMobileNo(string mobileNo)
+        {
+            string mobileExpression = "([+][9]{1}[1]{1}\\s)?[6-9]{1}[0-9]{9}";
+            Regex rg = new Regex(mobileExpression);
+            return rg.IsMatch(mobileNo);
+        }
     }
 }
