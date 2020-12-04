@@ -23,5 +23,11 @@ namespace UserRegistration
             Regex rg = new Regex(mobileExpression);
             return rg.IsMatch(mobileNo);
         }
+        public static bool validatePassword(string password)
+        {
+            string passwordExpression = "[A-Za-z]{8,}";  //Rule 1 : Password must have minimum 8 charactors
+            Regex rg = new Regex(passwordExpression);
+            return rg.IsMatch(password);
+        }
     }
 }

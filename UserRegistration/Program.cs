@@ -20,6 +20,9 @@ namespace UserRegistration
             Console.WriteLine("Enter Mobile Number");
             string mobileNo = Console.ReadLine();
             Console.WriteLine(UserRegistration.validateMobileNo(mobileNo));
+            Console.WriteLine("Enter password");
+            string password = Console.ReadLine();
+            Console.WriteLine(UserRegistration.validatePassword(password));
         }
     }
 }
