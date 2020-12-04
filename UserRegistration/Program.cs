@@ -23,6 +23,8 @@ namespace UserRegistration
             Console.WriteLine("Enter password");
             string password = Console.ReadLine();
             Console.WriteLine(UserRegistration.validatePassword(password));
+            Console.WriteLine("-------------------Email Sample Validator-----------------");
+            ValidateEmailSamples.emailValidator();
         }
     }
 }
