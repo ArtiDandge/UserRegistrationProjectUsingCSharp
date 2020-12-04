@@ -26,8 +26,9 @@ namespace UserRegistration
         public static bool validatePassword(string password)
         {
             //string passwordExpression = "[A-Za-z]{8,}";    Rule 1 : Password must have minimum 8 charactors
-            string passwordExpression2 = ".*[A-Z].*";	   //Rule 2: password should have atleast one Upper case
-            Regex rg = new Regex(passwordExpression2);
+            //string passwordExpression2 = ".*[A-Z].*";	     Rule 2: password should have atleast one Upper case
+            string passwordExpression3 = "^(?=.*[a-z])(?=.*[A-Z]).{8,}$";
+            Regex rg = new Regex(passwordExpression3);
             return rg.IsMatch(password);
         }
     }
