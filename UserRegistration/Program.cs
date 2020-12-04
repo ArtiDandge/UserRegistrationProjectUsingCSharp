@@ -16,7 +16,8 @@ namespace UserRegistration
             Console.WriteLine(UserRegistration.validateFirstName(last_name));
             Console.WriteLine("Enter Email Address");
             string email = Console.ReadLine();
-            Console.WriteLine(UserRegistration.validateFirstName(email));
+            Console.WriteLine(UserRegistration.validateEmail(email));
+
         }
     }
 }
