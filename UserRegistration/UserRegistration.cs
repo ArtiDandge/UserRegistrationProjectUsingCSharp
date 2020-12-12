@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace UserRegistration
 {
-    class UserRegistration
+    public class UserRegistration
     {
 
         public static bool validateFirstName(string name)
@@ -13,7 +13,7 @@ namespace UserRegistration
         }
         public static bool validateEmail(string email)
         {
-            string emailExpression = "^[a-zA-Z0-9+_.-]+@[a-zA-Z.-]+$";
+            string emailExpression = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z0-9]{2,6}$";
             Regex rg = new Regex(emailExpression);
             return rg.IsMatch(email);
         }
@@ -25,7 +25,7 @@ namespace UserRegistration
         }
         public static bool validatePassword(string password)
         {
-            string passwordExpression3 = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}";
+            string passwordExpression3 = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#?!@$%^&*-]).{8,}$";
             Regex rg = new Regex(passwordExpression3);
             return rg.IsMatch(password);
         }
