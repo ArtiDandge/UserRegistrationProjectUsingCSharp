@@ -205,5 +205,99 @@ namespace UserRegistrationTest
             }
             
         }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /// <summary>
+        /// Given Valid Name to the lambda function should return true and test case should pass  
+        /// </summary>
+        [TestMethod]
+        public void GivenValidName_WhenTrue_ShouldReturnTrueUsingLambdaExpression()
+        {
+            bool expectedResult = true;
+            bool result = UserRegistration.UserRegistration.validateUserName("Arti");
+            Assert.AreEqual(expectedResult, result);
+        }
+        /// <summary>
+        /// Given Invalid Name to the lambda function should return false and test case should pass  
+        /// </summary>
+        [TestMethod]
+        public void GivenInvalidName_WhenFalse_ShouldReturnTrueUsingLambdaExpression()
+        {
+            bool expectedResult = false;
+            bool result = UserRegistration.UserRegistration.validateUserName("arti");
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        /// <summary>
+        /// Given Valid email to the lambda function should return true and test case should pass  
+        /// </summary>
+        [TestMethod]
+        public void GivenValidEmail_WhenTrue_ShouldReturnTrueUsingLambdaExpression()
+        {
+            bool expectedResult = true;
+            bool result = UserRegistration.UserRegistration.validateUserEmail("abc.xyz@gmail.com");
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        /// <summary>
+        /// Given Invalid email to the lambda function should return false and test case should pass  
+        /// </summary>
+        [TestMethod]
+        public void GivenInvalidEmail_WhenFalse_ShouldReturnTrueUsingLambdaExpression()
+        {
+            bool expectedResult = false;
+            bool result = UserRegistration.UserRegistration.validateUserEmail("abc@%*gmail.com");
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        /// <summary>
+        ///  Given Valid mobile number to the lambda function should return true and test case should pass  
+        /// </summary>
+        [TestMethod]
+        public void GivenValidMobileNo_WhenTrue_ShouldReturnTrueUsingLambdaExpression()
+        {
+            bool expectedResult = true;
+            bool result = UserRegistration.UserRegistration.validateUserMobileNo("91 9876543210");
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        /// <summary>
+        ///  Given Invalid mobile number to the lambda function should return false and test case should pass  
+        /// </summary>
+        [TestMethod]
+        public void GivenInvalidMobileNo_WhenFalse_ShouldReturnTrueUsingLambdaExpression()
+        {
+            bool expectedResult = false;
+            bool result = UserRegistration.UserRegistration.validateUserMobileNo("76543210");
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        /// <summary>
+        /// Given Valid Password to the lambda function should return true and test case should pass 
+        /// </summary>
+        [TestMethod]
+
+        public void GivenValidPassword_WhenTrue_ShouldReturnTrueUsingLambdaExpression()
+        {
+            bool expectedResult = true;
+            var result = UserRegistration.UserRegistration.validateUserPassword("Arti@12333");
+            Assert.AreEqual(expectedResult, result);
+
+        }
+
+        /// <summary>
+        /// Given Invalid Password to the lambda function should return false and test case should pass 
+        /// </summary>
+        [TestMethod]
+
+        public void GivenInvalidPassword_WhenFalse_ShouldReturnTrueUsingLambdaExpression()
+        {
+            bool expectedResult = false;
+            var result = UserRegistration.UserRegistration.validateUserPassword("arti2333");
+            Assert.AreEqual(expectedResult, result);
+
+        }
+
     }
 }

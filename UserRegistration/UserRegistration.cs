@@ -5,12 +5,14 @@ namespace UserRegistration
 {
     public class UserRegistration
     {
-
+        public static string expression = "^[A-Z]{1}[a-zA-Z]{2,}";
+        public static string emailExpression = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z0-9]{2,6}$";
+        public static string mobileExpression = "([+][9]{1}[1]{1}\\s)?[6-9]{1}[0-9]{9}";
+        public static string passwordExpression3 = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#?!@$%^&*-]).{8,}$";
         public static bool validateName(string name)
         {
             try
-            {
-                string expression = "^[A-Z]{1}[a-zA-Z]{2,}";
+            {               
                 Regex rg = new Regex(expression);
                 return rg.IsMatch(name);
             }
@@ -23,7 +25,6 @@ namespace UserRegistration
         {
             try
             {
-                string emailExpression = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z0-9]{2,6}$";
                 Regex rg = new Regex(emailExpression);
                 return rg.IsMatch(email);
             }
@@ -35,8 +36,7 @@ namespace UserRegistration
         public static bool validateMobileNo(string mobileNo)
         {
             try
-            {
-                string mobileExpression = "([+][9]{1}[1]{1}\\s)?[6-9]{1}[0-9]{9}";
+            { 
                 Regex rg = new Regex(mobileExpression);
                 return rg.IsMatch(mobileNo);
             }
@@ -50,7 +50,6 @@ namespace UserRegistration
         {
             try
             {
-                string passwordExpression3 = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[#?!@$%^&*-]).{8,}$";
                 Regex rg = new Regex(passwordExpression3);
                 return rg.IsMatch(password);
             }
@@ -59,5 +58,13 @@ namespace UserRegistration
                 throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.INVALID_PASSWORD, "Invalid Password.Please make sure Password should follow all predefined rules of a valid Password");
             }
         }
+
+        /// <summary>
+        /// Labda expression/function to validate user name, mobile number, email and password 
+        /// </summary>
+        public static Func<string, bool> validateUserName = name => Regex.IsMatch(name, expression);
+        public static Func<string, bool> validateUserEmail = email => Regex.IsMatch(email, emailExpression);
+        public static Func<string, bool> validateUserMobileNo = mobileNo => Regex.IsMatch(mobileNo, mobileExpression);
+        public static Func<string, bool> validateUserPassword = password => Regex.IsMatch(password, passwordExpression3);
     }
 }
