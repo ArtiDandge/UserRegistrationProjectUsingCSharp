@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace UserRegistration
 {
-    class ValidateEmailSamples
+    public class ValidateEmailSamples
     {
         public static void emailValidator()
         {
