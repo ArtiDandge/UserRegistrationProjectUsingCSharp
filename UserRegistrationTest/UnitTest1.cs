@@ -12,8 +12,8 @@ namespace UserRegistrationTest
         public void GivenValidFirstName_ShouldReturnTrue()
         {
             bool expectedResult = true;
-            bool result = UserRegistration.UserRegistration.validateFirstName("Arti");
-            Assert.AreEqual(expectedResult,result);
+            bool result = UserRegistration.UserRegistration.validateName("Arti");
+            Assert.AreEqual(expectedResult, result);
         }
 
         /// <summary>
@@ -22,9 +22,16 @@ namespace UserRegistrationTest
         [TestMethod]
         public void GivenInvalidFirstName_WhenNameNotStartingWithUpper_ShouldReturnFalse()
         {
-            bool expectedResult = false;
-            bool result = UserRegistration.UserRegistration.validateFirstName("arti");
-            Assert.AreEqual(expectedResult, result);
+            try
+            {
+
+                bool result = UserRegistration.UserRegistration.validateName("arti");
+
+            }
+            catch (UserRegistrationExceptions e)
+            {
+                Assert.AreEqual("Invalid User Name. Please make sure Name should follow all predefined rules of a valid name", e.Message);
+            }
         }
 
         /// <summary>
@@ -34,30 +41,41 @@ namespace UserRegistrationTest
         public void GivenValidLastName_ShouldReturnTrue()
         {
             bool expectedResult = true;
-            bool result = UserRegistration.UserRegistration.validateFirstName("Dandge");
+            bool result = UserRegistration.UserRegistration.validateName("Dandge");
             Assert.AreEqual(expectedResult, result);
         }
 
         /// <summary>
-        /// Given last name which does not start from upper should return false
+        /// given invalid email,  should throw custom exception for invalid email
         /// </summary>
         [TestMethod]
         public void GivenInvalidLastName_WhenNameNotStartingWithUpper_ShouldReturnFalse()
         {
-            bool expectedResult = false;
-            bool result = UserRegistration.UserRegistration.validateFirstName("dandge");
-            Assert.AreEqual(expectedResult, result);
+            try
+            {
+                bool result = UserRegistration.UserRegistration.validateName("dandge");
+            }
+            catch (UserRegistrationExceptions e)
+            {
+                Assert.AreEqual("Invalid User Name. Please make sure Name should follow all predefined rules of a valid name", e.Message);
+            }
+
         }
 
         /// <summary>
-        /// Given first name and last name  whose length is less that 3 character should return false
+        /// given invalid email,  should throw custom exception for invalid email
         /// </summary>
         [TestMethod]
         public void GivenName_WhenShort_ShouldReturnFalse()
         {
-            bool expectedResult = false;
-            bool result = UserRegistration.UserRegistration.validateFirstName("ar");
-            Assert.AreEqual(expectedResult, result);
+            try
+            {
+                bool result = UserRegistration.UserRegistration.validateName("ar");
+            }
+            catch (UserRegistrationExceptions e)
+            {
+                Assert.AreEqual("Invalid User Name. Please make sure Name should follow all predefined rules of a valid name", e.Message);
+            }
         }
 
         /// <summary>
@@ -83,25 +101,35 @@ namespace UserRegistrationTest
         }
 
         /// <summary>
-        /// given invalid email, should return false
+        /// given invalid email, should throw custom exception for invalid email
         /// </summary>
         [TestMethod]
         public void GivenInvalidEmail_ShouldReturnFalse()
         {
-            bool expectedResult = false;
-            bool result = UserRegistration.UserRegistration.validateEmail("abc");
-            Assert.AreEqual(expectedResult, result);
+            try
+            {
+                UserRegistration.UserRegistration.validateEmail("abc");
+            }
+            catch (UserRegistrationExceptions e)
+            {
+                Assert.AreEqual("Invalid Email address.Please make sure email should follow all predefined rules of a valid email", e.Message);
+            }
         }
 
         /// <summary>
-        ///  given invalid email, should return false
+        ///  given invalid email, should throw custom exception for invalid email
         /// </summary>
         [TestMethod]
         public void GivenInvalidEmail2_ShouldReturnFalse()
         {
-            bool expectedResult = false;
-            bool result = UserRegistration.UserRegistration.validateEmail("abc@.com.my");
-            Assert.AreEqual(expectedResult, result);
+            try
+            {
+                UserRegistration.UserRegistration.validateEmail("abc@.com.my");
+            }
+            catch(UserRegistrationExceptions e)
+            {
+                Assert.AreEqual("Invalid Email address.Please make sure email should follow all predefined rules of a valid email", e.Message);
+            }
         }
 
         /// <summary>
@@ -127,29 +155,27 @@ namespace UserRegistrationTest
         }
 
         /// <summary>
-        /// Given invalid mobile number should return true
+        /// Given invalid mobile number should throw custom exception for invalid mobile number
         /// </summary>
-        [TestMethod]
-        public void GivenInvalidMobileNumber_ShouldReturnFalse()
+        [DataTestMethod]
+        [DataRow("13224345564")]
+        [DataRow("21 22343424234")]
+        [DataRow("675565")]
+        [DataRow("2343")]
+        public void GivenInvalidMobileNumber_ShouldReturnFalse(string mobileNo)
         {
-            bool expectedResult = false;
-            bool result = UserRegistration.UserRegistration.validateMobileNo("13224345564");
-            Assert.AreEqual(expectedResult, result);
+            try
+            {
+                UserRegistration.UserRegistration.validateMobileNo(mobileNo);
+            }
+            catch (UserRegistrationExceptions e)
+            {
+                Assert.AreEqual("Invalid Mobile Number.Please make sure Mobile Number should follow all predefined rules of a valid Mobile Number", e.Message);
+            }
         }
 
         /// <summary>
-        /// Given invalid mobile number should return true
-        /// </summary>
-        [TestMethod]
-        public void GivenInvalidMobileNumber2_ShouldReturnFalse()
-        {
-            bool expectedResult = false;
-            bool result = UserRegistration.UserRegistration.validateMobileNo("243444");
-            Assert.AreEqual(expectedResult, result);
-        }
-
-        /// <summary>
-        /// validate Password should return retrun
+        /// validate Password should return true
         /// </summary>
         [TestMethod]
         public void GivenValidPassword_ShouldReturnTrue()
@@ -160,47 +186,24 @@ namespace UserRegistrationTest
         }
 
         /// <summary>
-        /// given invalid password should return false when its does not contain minimum 8 characters
+        ///  throw custom exception for invalid password
         /// </summary>
-        [TestMethod]
-        public void GivenInvalidPassword_ShouldReturnFalse()
+        [DataTestMethod]
+        [DataRow("AartiS234we")]
+        [DataRow("Aarti@we")]
+        [DataRow("arti@1342")]
+        [DataRow("Arti@12")]
+        public void GivenInvalidPassword_ShouldReturnFalse(string password)
         {
-            bool expectedResult = false;
-            bool result = UserRegistration.UserRegistration.validatePassword("Arti@12");
-            Assert.AreEqual(expectedResult, result);
-        }
-
-        /// <summary>
-        /// retrun false when password doen not contain atleast one Upper letter
-        /// </summary>
-        [TestMethod]
-        public void GivenInvalidPassword2_ShouldReturnFalse()
-        {
-            bool expectedResult = false;
-            bool result = UserRegistration.UserRegistration.validatePassword("arti@12");
-            Assert.AreEqual(expectedResult, result);
-        }
-
-        /// <summary>
-        /// retrun false when password doen not contain atleast one numeric
-        /// </summary>
-        [TestMethod]
-        public void GivenInvalidPassword3_ShouldReturnFalse()
-        {
-            bool expectedResult = false;
-            bool result = UserRegistration.UserRegistration.validatePassword("Aarti@we");
-            Assert.AreEqual(expectedResult, result);
-        }
-
-        /// <summary>
-        ///  retrun false when password doen not contain atleast one special character
-        /// </summary>
-        [TestMethod]
-        public void GivenInvalidPassword4_ShouldReturnFalse()
-        {
-            bool expectedResult = false;
-            bool result = UserRegistration.UserRegistration.validatePassword("AartiS234we");
-            Assert.AreEqual(expectedResult, result);
+            try
+            {
+                UserRegistration.UserRegistration.validatePassword(password);
+            }
+            catch(UserRegistrationExceptions e)
+            {
+                Assert.AreEqual("Invalid Password.Please make sure Password should follow all predefined rules of a valid Password", e.Message);
+            }
+            
         }
     }
 }
