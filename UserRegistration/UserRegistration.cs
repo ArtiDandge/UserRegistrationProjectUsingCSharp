@@ -21,6 +21,7 @@ namespace UserRegistration
                 throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.INVALID_NAME, "Invalid User Name. Please make sure Name should follow all predefined rules of a valid name");
             }
         }
+
         public static bool validateEmail(string email)
         {
             try
@@ -33,6 +34,7 @@ namespace UserRegistration
                 throw new UserRegistrationExceptions(UserRegistrationExceptions.ExceptionType.INVALID_EMAIL, "Invalid Email address.Please make sure email should follow all predefined rules of a valid email");
             }
         }
+
         public static bool validateMobileNo(string mobileNo)
         {
             try
@@ -46,6 +48,7 @@ namespace UserRegistration
             }
             
         }
+
         public static bool validatePassword(string password)
         {
             try
@@ -60,7 +63,7 @@ namespace UserRegistration
         }
 
         /// <summary>
-        /// Labda expression/function to validate user name, mobile number, email and password 
+        /// Lambda expression/function to validate user name, mobile number, email and password 
         /// </summary>
         public static Func<string, bool> validateUserName = name => Regex.IsMatch(name, expression);
         public static Func<string, bool> validateUserEmail = email => Regex.IsMatch(email, emailExpression);

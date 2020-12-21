@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace UserRegistration
 {
@@ -12,10 +10,9 @@ namespace UserRegistration
             INVALID_EMAIL,
             INVALID_MOBILE_NUMBER,
             INVALID_PASSWORD
-
         }
 
-        private readonly ExceptionType type;
+        public readonly ExceptionType type;
         public UserRegistrationExceptions(ExceptionType type, String message) : base(message)
         {
             this.type = type;

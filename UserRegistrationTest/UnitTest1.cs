@@ -24,9 +24,7 @@ namespace UserRegistrationTest
         {
             try
             {
-
                 bool result = UserRegistration.UserRegistration.validateName("arti");
-
             }
             catch (UserRegistrationExceptions e)
             {
@@ -59,7 +57,6 @@ namespace UserRegistrationTest
             {
                 Assert.AreEqual("Invalid User Name. Please make sure Name should follow all predefined rules of a valid name", e.Message);
             }
-
         }
 
         /// <summary>
@@ -202,8 +199,7 @@ namespace UserRegistrationTest
             catch(UserRegistrationExceptions e)
             {
                 Assert.AreEqual("Invalid Password.Please make sure Password should follow all predefined rules of a valid Password", e.Message);
-            }
-            
+            }            
         }
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -298,6 +294,5 @@ namespace UserRegistrationTest
             Assert.AreEqual(expectedResult, result);
 
         }
-
     }
 }

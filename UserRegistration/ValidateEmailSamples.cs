@@ -39,6 +39,5 @@ namespace UserRegistration
                 Console.WriteLine(item+" : "+ emailPattern.IsMatch(item));
             }
         }
-
     }
 }
